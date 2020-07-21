@@ -62,6 +62,9 @@ A more streamlined, efficient and secure Unity Resource Management Solution for 
 - [烟雨迷离半世殇](https://www.lfzxb.top/)
 - [土豆](https://www.xasset.org/)
 - [JasonXuDeveloper](https://github.com/JasonXuDeveloper)
+- [大魔王有木桑](https://github.com/yomunsam)
+- [suixin567](https://github.com/suixin567)
+- [Sven](https://github.com/SvenCheung)
 
 ## More Repository 
 
@@ -138,6 +141,9 @@ A more streamlined, efficient and secure Unity Resource Management Solution for 
 - [烟雨迷离半世殇](https://www.lfzxb.top/)
 - [土豆](https://www.xasset.org/)
 - [JasonXuDeveloper](https://github.com/JasonXuDeveloper)
+- [大魔王有木桑](https://github.com/yomunsam)
+- [suixin567](https://github.com/suixin567)
+- [Sven](https://github.com/SvenCheung)
 
 ## 更多项目
 

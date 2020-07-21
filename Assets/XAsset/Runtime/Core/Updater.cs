@@ -55,8 +55,9 @@ namespace libx
         public const int STEP_VFS = 1;
         public const int STEP_COPY = 2;
         public const int STEP_VERSIONS = 3;
-        public const int STEP_DOWNLOAD = 4;
-        public const int STEP_COMPLETE = 5;
+        public const int STEP_PREPAREOVER = 4;
+        public const int STEP_DOWNLOAD = 5;
+        public const int STEP_COMPLETE = 6;
         private int _step;
 
         [SerializeField] private string baseURL = "http://127.0.0.1:7888/DLC/";
@@ -116,6 +117,9 @@ namespace libx
 
         private void OnApplicationFocus(bool hasFocus)
         {
+#if UNITY_EDITOR
+            return;
+#endif
             if (_reachabilityChanged || _step == STEP_IDLE)
             {
                 return;
@@ -136,7 +140,7 @@ namespace libx
             {
                 if (_step == STEP_DOWNLOAD)
                 {
-                    _downloader.Stop(); 
+                    _downloader.Stop();
                 }
             }
         }
@@ -279,11 +283,16 @@ namespace libx
 
         private void AddDownload(VFile item)
         {
-            _downloader.AddDownload(GetDownloadURL(item.name), _savePath + item.name, item.hash, item.len);
+            _downloader.AddDownload(GetDownloadURL(item.name), item.name, _savePath + item.name, item.hash, item.len);
         }
 
         private void PrepareDownloads()
         {
+            if (_step == STEP_PREPAREOVER)
+            {
+                return;
+            }
+            
             if (enableVFS)
             {
                 var path = string.Format("{0}{1}", _savePath, Versions.Dataname);
@@ -349,7 +358,9 @@ namespace libx
 
             if (_step == STEP_IDLE)
             {
+                //默认开器 VFS
                 yield return RequestVFS();
+//                enableVFS = true;
                 _step = STEP_COPY;
             }
 
@@ -368,6 +379,7 @@ namespace libx
             {
                 OnMessage("正在检查版本信息...");
                 PrepareDownloads();
+                _step = STEP_PREPAREOVER;
                 var totalSize = _downloader.size;
                 if (totalSize > 0)
                 {
@@ -523,7 +535,7 @@ namespace libx
                     {
                         files.Add(new VFile
                             {
-                                name = Path.GetFileName(download.savePath),
+                                name = download.name,
                                 hash = download.hash,
                                 len = download.len,
                             });
