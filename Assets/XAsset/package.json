@@ -1,0 +1,12 @@
+{
+  "name": "org.xasset.xasset",
+  "displayName": "XAsset",
+  "version": "4.0.0",
+  "unity": "2017.4",
+  "description": "A more streamlined, efficient and secure Unity Resource Management Solution for you.",
+  "keywords": [
+    "XAsset",
+    "Assets"
+  ],
+  "type": "library"
+}
